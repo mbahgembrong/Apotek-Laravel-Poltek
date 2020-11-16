@@ -13,11 +13,10 @@ class ObatController extends Controller
         $batas=5;
         $jumlah_obat = Obat::count();
         // $data = Obat::all();
-        $data = Obat::orderBy('id','desc')->paginate($batas);
+        $data = Obat::orderBy('id','desc')->Paginate(5);
         $no=$batas*($data->currentPage()-1);
         // return view('obat.index', ['data' => $data]);
-        // return view('obat.index', compact('data','no','jumlah_obat'));
-        return view('obat.index', ['data' =>$data,'no'=>$no,'jumlah_obat'=>$jumlah_obat]);
+        return view('obat.index', compact('data','no','jumlah_obat'));
     }
 
     // untuk membuat data baru

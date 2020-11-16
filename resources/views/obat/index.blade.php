@@ -59,9 +59,9 @@
                             </tbody>
                         </table>
                         <div>Jumlah Obat: {{ $jumlah_obat }}</div>
-                        <div> @if ($jumlah_obat<5)
-                        {{$data->link()}}
-                        @endif</div>
+                        <div>
+                        {{$data->links()}}
+                       </div>
                     </div>
                 </div>
             </div>
