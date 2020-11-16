@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h4>Edit Data</h4>
-    <form action="" method="post">
+    <form action="{{ route('obat.update',$obat->id)}}" method="post">
     @csrf
     <div class="form-group row">
         <label for="kode" class="col-sm-2 col-form-label">Kode Obat</label>
@@ -38,7 +38,9 @@
         <label for="supplier" class="col-sm-2 col-form-label">Supplier</label>
         <div class="col-sm-10"><input type="text" name="supplier" id="supplier" value="{{$obat->supplier}}" class="form-control"></div>
     </div>
-    <div><button type="submit" class="btn btn-primary">Simpan</button></div>
+    <div><button type="submit" class="btn btn-primary">Simpan</button>
+    <a href="{{route('obat.index')}}" class="btn btn-primary" >Cancel</a>
+    </div>
     </form>
 </div>
 @endsection

@@ -1,13 +1,18 @@
 @extends('layouts.master')
 @section('content')
     <div class="container">
+        @if (Session::has('pesan'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('pesan')}}
+        </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Data Obat
                             <p align="right">
-                                <a href="{{route('')}}" class="btn btn-success pull-right" style="margin-top: -8px">Tambah Data</a>
+                                <a href="{{route('obat.create')}}" class="btn btn-success pull-right" style="margin-top: -8px">Tambah Data</a>
                             </p><br>
                         </h2>
                     </div>
@@ -26,20 +31,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dataObat as $obat)
+                                @php
+                                    $no = $data->firstItem()-1;
+                                @endphp
+                                @foreach ($data as $obat)
+                                @php
+                                    $no++;
+                                @endphp
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    {{-- <td>{{ $loop->iteration }}</td> --}}
+                                    <td>{{ $no }}</td>
                                     <td>{{ $obat->id }}</td>
                                     <td>{{ $obat->nama }}</td>
-                                    <td>{{ $obat->harga }}</td>
+                                    <td>{{ number_format($obat->harga,0,',','.')}}</td>
                                     <td>{{ $obat->jenis }}</td>
-                                    <td>{{ $obat->tgl_exp }}</td>
+                                    <td>{{ $obat->tgl_exp->format('d/m/Y') }}</td>
                                     <td>{{ $obat->supplier }}</td>
-                                    <td><button type="submit" class="btn btn-succes">Edit</button></td>
+                                    <td>
+                                        <form action="{{route('obat.destroy',$obat->id)}}" method="post">
+                                            @csrf
+                                            <a href="{{route('obat.edit',$obat->id)}}" class="btn btn-primary">Edit</a>
+                                            <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah anda Yakin Untuk Hapus Data ?')">Hapus</button>
+                                        </form>
+                                        </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        <div>Jumlah Obat: {{ $jumlah_obat }}</div>
+                        <div> @if ($jumlah_obat<5)
+                        {{$data->link()}}
+                        @endif</div>
                     </div>
                 </div>
             </div>

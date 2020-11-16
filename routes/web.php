@@ -26,9 +26,13 @@ Route::get('/', 'ContohController@welcome');
 Route::get('/contact', 'ContohController@contac');
 Route::get('/about', 'ContohController@about');
 // Route::get('/obat', 'ContohController@obat');
-Route::get('/obat', 'ObatController@index');
+Route::get('/obat', 'ObatController@index')->name('obat.index');
 Route::get('/vitamin', 'ContohController@vitamin');
 Route::get('/obat/create', 'ObatController@create')->name('obat.create');
 Route::post('/obat', 'ObatController@store')->name('obat.store');
 // untuk menampilkan data yang diedit
 Route::get('/obat/edit/{id}', 'ObatController@edit')->name('obat.edit');
+Route::post('/obat/update/{id}', 'ObatController@update')->name('obat.update');
+// untuk menhapus data
+Route::post('/obat/destroy/{id}', 'ObatController@destroy')->name('obat.destroy');
+
