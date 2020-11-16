@@ -21,7 +21,7 @@
         <label for="jenis" class="col-sm-2 col-form-label">Jenis</label>
         <div class="col-sm-10">
             <select class="col-sm-2 form-control" name="jenis" id="jenis">
-                <option selected disabled  value="{{$obat->jenis}}">{{$obat->jenis}}</option>
+                <option selected value="{{$obat->jenis}}">{{$obat->jenis}}</option>
                 <option value="Bedak">Bedak</option>
                 <option value="Cair">Cair</option>
                 <option value="Tablet">Tablet</option>
@@ -39,7 +39,7 @@
         <div class="col-sm-10"><input type="text" name="supplier" id="supplier" value="{{$obat->supplier}}" class="form-control"></div>
     </div>
     <div><button type="submit" class="btn btn-primary">Simpan</button>
-    <a href="{{route('obat.index')}}" class="btn btn-primary" >Cancel</a>
+    <a href="{{route('obat.index')}}" class="btn btn-warning" >Cancel</a>
     </div>
     </form>
 </div>

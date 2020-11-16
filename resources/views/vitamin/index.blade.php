@@ -10,9 +10,9 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2>Data Obat
+                        <h2>Data Vitamin
                             <p align="right">
-                                <a href="{{route('obat.create')}}" class="btn btn-success pull-right" style="margin-top: -8px">Tambah Data</a>
+                                <a href="{{route('vitamin.create')}}" class="btn btn-success pull-right" style="margin-top: -8px">Tambah Data</a>
                             </p><br>
                         </h2>
                     </div>
@@ -21,36 +21,42 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%">No.</th>
-                                    <th style="width: 12%">Kode Obat</th>
-                                    <th style="width: 16.66%">Nama Obata</th>
+                                    <th style="width: 12%">Kode Vitamin</th>
+                                    <th style="width: 16.66%">Nama Vitamin</th>
                                     <th style="width: 10%">Harga</th>
                                     <th style="width: 12%">Jenis</th>
+                                    <th style="width: 14%">Fungsi</th>
+                                    <th style="width: 8%">Ukuran</th>
                                     <th style="width: 14%">Expired</th>
+                                    <th style="width: 14%">Produksi</th>
                                     <th style="width: 14%">Supplier</th>
-                                    <th style="width: 23%">Aksi</th>
+                                    <th style="width: 30%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                     $no = $data->firstItem()-1;
                                 @endphp
-                                @foreach ($data as $obat)
+                                @foreach ($data as $vitamin)
                                 @php
                                     $no++;
                                 @endphp
                                 <tr>
                                     {{-- <td>{{ $loop->iteration }}</td> --}}
                                     <td>{{ $no }}</td>
-                                    <td>{{ $obat->id }}</td>
-                                    <td>{{ $obat->nama }}</td>
-                                    <td>{{ number_format($obat->harga,0,',','.')}}</td>
-                                    <td>{{ $obat->jenis }}</td>
-                                    <td>{{ $obat->tgl_exp->format('d/m/Y') }}</td>
-                                    <td>{{ $obat->supplier }}</td>
+                                    <td>{{ $vitamin->id }}</td>
+                                    <td>{{ $vitamin->nama }}</td>
+                                    <td>{{ number_format($vitamin->harga,0,',','.')}}</td>
+                                    <td>{{ $vitamin->jenis }}</td>
+                                    <td>{{ $vitamin->fungsi }}</td>
+                                    <td>{{ $vitamin->ukuran }}</td>
+                                    <td>{{ $vitamin->tgl_exp->format('d/m/Y') }}</td>
+                                    <td>{{ $vitamin->tgl_prod->format('d/m/Y') }}</td>
+                                    <td>{{ $vitamin->supplier }}</td>
                                     <td>
-                                        <form action="{{route('obat.destroy',$obat->id)}}" method="post">
+                                        <form action="{{route('vitamin.destroy',$vitamin->id)}}" method="post">
                                             @csrf
-                                            <a href="{{route('obat.edit',$obat->id)}}" class="btn btn-warning">Edit</a>
+                                            <a href="{{route('vitamin.edit',$vitamin->id)}}" class="btn btn-warning" style="margin-bottom:5px">Edit</a>
                                             <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda Yakin Untuk Hapus Data ?')">Hapus</button>
                                         </form>
                                         </td>
@@ -58,7 +64,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div>Jumlah Obat: {{ $jumlah_obat }}</div>
+                        <div>Jumlah Vitamin: {{ $jumlah_vitamin }}</div>
                         <div>
                         {{$data->links()}}
                        </div>
